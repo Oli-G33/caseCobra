@@ -2,7 +2,9 @@ import { Icons } from '@/components/Icons';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import Phone from '@/components/Phone';
 import { Reviews } from '@/components/Reviews';
-import { Check, Star } from 'lucide-react';
+import { buttonVariants } from '@/components/ui/button';
+import { ArrowRight, Check, Star } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -214,11 +216,41 @@ export default function Home() {
               <div className="relative h-80 md:h-full w-full md:justify-self-end max-w-sm rounded-xl bg-gray-900/5 ring-inset ring-gray-900/10 lg:rounded-2xl">
                 <img
                   src="/horse.jpg"
-                  className="rounded-md object-cover bg-white shdow-2xl ring-1 ring-gray-900/10 h-full w-full"
+                  className="rounded-md object-cover bg-white shdow-2xl ring-1 ring-gray-900/10 h-full w-full "
                 />
               </div>
+              <Phone imgSrc="/horse_phone.jpg" className="w-60" />
             </div>
           </div>
+          <ul className="mx-auto mt-12 max-w-prose sm:text-lg space-y-2 w-fit">
+            <li className="w-fit">
+              <Check className="h-5 w-5 text-green-600 inline mr-1.5" />
+              High quality silicone material
+            </li>
+            <li className="w-fit">
+              <Check className="h-5 w-5 text-green-600 inline mr-1.5" />
+              Scratch and fingerprint resistant coating
+            </li>
+            <li className="w-fit">
+              <Check className="h-5 w-5 text-green-600 inline mr-1.5" />
+              Wireless charging compatible
+            </li>
+            <li className="w-fit">
+              <Check className="h-5 w-5 text-green-600 inline mr-1.5" />5 year
+              print warranty
+            </li>
+            <div className="flex justify-center">
+              <Link
+                href="/configure/upload"
+                className={buttonVariants({
+                  size: 'lg',
+                  className: 'mx-auto mt-8'
+                })}
+              >
+                Create your case now <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </ul>
         </MaxWidthWrapper>
       </section>
     </div>
