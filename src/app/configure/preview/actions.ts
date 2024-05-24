@@ -42,8 +42,6 @@ export const createCheckoutSession = async ({
     }
   });
 
-  console.log(user.id, configuration.id);
-
   if (existingOrder) {
     order = existingOrder;
   } else {
@@ -60,7 +58,7 @@ export const createCheckoutSession = async ({
     name: 'Custom iPhone Case',
     images: [configuration.imageUrl],
     default_price_data: {
-      currency: 'USD',
+      currency: 'EUR',
       unit_amount: price
     }
   });
