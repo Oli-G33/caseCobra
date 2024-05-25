@@ -22,6 +22,8 @@ export const createCheckoutSession = async ({
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
+  console.log(user);
+
   if (!user) {
     throw new Error('You need to be logged in');
   }
@@ -47,7 +49,7 @@ export const createCheckoutSession = async ({
   } else {
     order = await db.order.create({
       data: {
-        amount: price / 100,
+        amount: price,
         userId: user.id,
         configurationId: configuration.id
       }
