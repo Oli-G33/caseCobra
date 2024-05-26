@@ -12,7 +12,7 @@ export const formatPrice = (price: number) => {
     currency: 'EUR'
   });
 
-  return formatter.format(price / 100);
+  return formatter.format(price);
 };
 
 export function constructMetadata({
