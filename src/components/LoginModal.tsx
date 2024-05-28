@@ -19,14 +19,14 @@ const LoginModal = ({
 }) => {
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
-      <DialogContent className="absolute z-[99999]">
+      <DialogContent className="absolute z-[9999999]">
         <DialogHeader>
           <div className="relative mx-auto w-24 h-24 mb-2">
             <Image
               src="/snake-1.png"
               alt="snake image"
-              fill
               className="object-contain"
+              fill
             />
           </div>
           <DialogTitle className="text-3xl text-center font-bold tracking-tight text-gray-900">
@@ -38,15 +38,16 @@ const LoginModal = ({
             </span>{' '}
             Please login or create an account to complete your purchase.
           </DialogDescription>
-          <div className="grid grid-cols-2 gap-6 divide-x divide-gray-200">
-            <LoginLink className={buttonVariants({ variant: 'outline' })}>
-              Login
-            </LoginLink>
-            <RegisterLink className={buttonVariants({ variant: 'default' })}>
-              Sign up
-            </RegisterLink>
-          </div>
         </DialogHeader>
+
+        <div className="grid grid-cols-2 gap-6 divide-x divide-gray-200">
+          <LoginLink className={buttonVariants({ variant: 'outline' })}>
+            Login
+          </LoginLink>
+          <RegisterLink className={buttonVariants({ variant: 'default' })}>
+            Sign up
+          </RegisterLink>
+        </div>
       </DialogContent>
     </Dialog>
   );

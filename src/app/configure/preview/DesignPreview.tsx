@@ -17,9 +17,9 @@ import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
 import LoginModal from '@/components/LoginModal';
 
 const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
-  const { id } = configuration;
   const router = useRouter();
   const { toast } = useToast();
+  const { id } = configuration;
   const { user } = useKindeBrowserClient();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
 
@@ -49,16 +49,26 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
     onError: () => {
       toast({
         title: 'Something went wrong',
-        description: 'There was an error on our end. Please try again',
+        description: 'There was an error on our end. Please try again.',
         variant: 'destructive'
       });
     }
   });
 
   const handleCheckout = () => {
+    console.log('handleCheckout triggered');
     if (user) {
+      console.log(
+        'user was detected and payment session will be called.',
+        user.email
+      );
+
+      // create payment session
       createPaymentSession({ configId: id });
+      console.log('Payment session has been called.');
     } else {
+      // need to log in
+      console.log('No user was detected and login modal is triggered');
       localStorage.setItem('configurationId', id);
       setIsLoginModalOpen(true);
     }
@@ -75,6 +85,7 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
           config={{ elementCount: 200, spread: 90 }}
         />
       </div>
+
       <LoginModal isOpen={isLoginModalOpen} setIsOpen={setIsLoginModalOpen} />
 
       <div className="mt-20 flex flex-col items-center md:grid text-sm sm:grid-cols-12 sm:grid-rows-1 sm:gap-x-6 md:gap-x-8 lg:gap-x-12">
