@@ -8,6 +8,11 @@ import OrderReceivedEmail from '@/components/emails/OrderReceivedEmail';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+interface ExtendedSession extends Stripe.Checkout.Session {
+  shipping?: {
+    address: Stripe.Address;
+  };
+}
 export async function POST(req: Request) {
   try {
     const body = await req.text();
@@ -28,7 +33,7 @@ export async function POST(req: Request) {
         throw new Error('Missing user email');
       }
 
-      const session = event.data.object as Stripe.Checkout.Session;
+      const session = event.data.object as ExtendedSession;
 
       const { userId, orderId } = session.metadata || {
         userId: null,
@@ -43,7 +48,7 @@ export async function POST(req: Request) {
       console.log('Checking for Billing and shipping address!!!');
 
       const billingAddress = session.customer_details!.address;
-      const shippingAddress = session.shipping_details!.address;
+      const shippingAddress = session.shipping!.address;
 
       const updatedOrder = await db.order.update({
         where: {
