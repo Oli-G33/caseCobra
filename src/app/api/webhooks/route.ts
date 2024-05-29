@@ -44,9 +44,6 @@ export async function POST(req: Request) {
         throw new Error('Invalid request metadata');
       }
 
-      console.log('HERE ==>', session);
-      console.log('Checking for Billing and shipping address!!!');
-
       const billingAddress = session.customer_details!.address;
       const shippingAddress = session.shipping!.address;
 
@@ -80,7 +77,7 @@ export async function POST(req: Request) {
       });
 
       await resend.emails.send({
-        from: 'CaseCobra <ngarcia333@gmail.com>',
+        from: 'CaseCobra <onboarding@resend.dev>',
         to: [event.data.object.customer_details.email],
         subject: 'Thanks for your order!',
         react: OrderReceivedEmail({
