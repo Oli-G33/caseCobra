@@ -56,19 +56,11 @@ const DesignPreview = ({ configuration }: { configuration: Configuration }) => {
   });
 
   const handleCheckout = () => {
-    console.log('handleCheckout triggered');
     if (user) {
-      console.log(
-        'user was detected and payment session will be called.',
-        user.email
-      );
-
       // create payment session
       createPaymentSession({ configId: id });
-      console.log('Payment session has been called.');
     } else {
       // need to log in
-      console.log('No user was detected and login modal is triggered');
       localStorage.setItem('configurationId', id);
       setIsLoginModalOpen(true);
     }
