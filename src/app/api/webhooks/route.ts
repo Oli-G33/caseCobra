@@ -39,12 +39,11 @@ export async function POST(req: Request) {
         throw new Error('Invalid request metadata');
       }
 
+      console.log('HERE ==>', session);
       console.log('Checking for Billing and shipping address!!!');
 
       const billingAddress = session.customer_details!.address;
       const shippingAddress = session.shipping_details!.address;
-
-      console.log('HERE ==>', session, billingAddress, shippingAddress);
 
       const updatedOrder = await db.order.update({
         where: {
